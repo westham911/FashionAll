@@ -1,0 +1,29 @@
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <div>
+            @if (!User.IsInRole("Admin"))
+            {
+                @await Component.InvokeAsync("ShoppingCartViewModel")
+            }
+
+
+        </div>
+
+    </tbody>
+</table>

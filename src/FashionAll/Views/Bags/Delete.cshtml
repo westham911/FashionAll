@@ -1,0 +1,59 @@
+@model FashionAll.Models.Bag
+
+@{
+    ViewData["Title"] = "Delete";
+    var imgUrl = "/LIZ110/asp_assignment";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bag</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Image
+        </dt>
+        <dd>
+            <img style="width: 250px; height: 250px;" src="@imgUrl@Html.DisplayFor(model => model.ImgSrc)" alt="Bag Image">
+        </dd>
+        <br />
+        <br />
+
+        <dt>
+            Bag Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BagName)
+        </dd>
+        <br />
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <br />
+
+        <dt>
+            Description
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BagDesc)
+        </dd>
+
+
+
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

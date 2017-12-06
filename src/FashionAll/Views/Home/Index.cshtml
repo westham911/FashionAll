@@ -1,0 +1,113 @@
+﻿@model FashionAll.Models.ViewModel
+
+
+@{
+    //List<FashionAll.Models.Category> listCategory = Model.ToList()[0] as List<FashionAll.Models.Category>;
+    //List<FashionAll.Models.Bag> listBag = Model.ToList()[0] as List<FashionAll.Models.Bag>;
+
+    ViewData["Title"] = "Home Page";
+    var imgUrl = "/LIZ110/asp_assignment";
+}
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <p class="lead">CATEGORY</p>
+
+
+        <div class="list-group" id="category_id">
+
+            @foreach (var item in Model.Categories)
+            {
+                
+                <a asp-route-id="@item.CategoryID" class="list-group-item">@Html.DisplayFor(modelItem => item.CategoryName)</a>
+                
+            }
+
+
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="row carousel-holder">
+
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="slide-image" src="~/images/banner_1.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img class="slide-image" src="~/images/banner_2.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img class="slide-image" src="~/images/banner_3.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img class="slide-image" src="~/images/banner_4.png" alt="">
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+
+
+
+            @foreach (var item in Model.Bags)
+            {
+                <div class="col-sm-4 col-lg-4 col-md-4">
+
+                        <div class="thumbnail">
+                            <a asp-area="" asp-controller="Home" asp-action="BagDetails" asp-route-id="@item.BagID">
+                                <img src="@imgUrl@Html.DisplayFor(modelItem => item.ImgSrc)" />
+                            </a>
+
+                            <div class="caption">
+                                <h4 class="pull-right">$@Html.DisplayFor(modelItem => item.Price)</h4>
+                                <h4>
+                                    <a class="product_name" asp-area="" asp-controller="Home" asp-action="BagDetails" asp-route-id="@item.BagID">@Html.DisplayFor(modelItem => item.BagName)</a>
+                                </h4>
+                                <p>@Html.DisplayFor(modelItem => item.BagDesc) </p>
+                            </div>
+                      @if (!User.IsInRole("Admin"))
+                      {
+                        <a onclick="addToCart(@item.BagID)">
+                            <div class="ratings add_to_cart">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                Add To Cart
+                            </div>
+                        </a>
+
+                      }
+
+                            <br />
+                        </div>
+                    </div>
+
+            }
+
+
+        </div>
+
+    </div>
+
+</div>

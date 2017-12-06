@@ -1,0 +1,80 @@
+
+@model FashionAll.Models.Bag
+
+@{
+    ViewData["Title"] = "Create";
+    var imgUrl = "/LIZ110/asp_assignment";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create"  enctype="multipart/form-data">  
+    <div class="form-horizontal">
+        <h4>Bag</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Image</label>
+            <div class="col-md-10">
+                <img id="ProductImage" style="width: 250px; height: 250px;" src="@imgUrl@Html.DisplayFor(model => model.ImgSrc)" alt="Bag Image" onerror="this.onerror = null; this.src = '@Href("~/images/error.png")'">
+                <br />
+                <input type="file" name="_files" id="_files" onchange='imagePreview(this);' accept="image/*" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Category</label>
+            <div class="col-md-10">
+                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
+                    <option value="">--Select Category--</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                <input asp-for="BagDesc" class="form-control" />
+                <span asp-validation-for="BagDesc" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Bag Name</label>
+            <div class="col-md-10">
+                <input asp-for="BagName" class="form-control" />
+                <span asp-validation-for="BagName" class="text-danger" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Price</label>
+            <div class="col-md-10">
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Supplier Name</label>
+            <div class="col-md-10">
+                <select asp-for="SupplierID" class ="form-control" asp-items="ViewBag.SupplierID">
+                    <option value="">--Select Supplier--</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

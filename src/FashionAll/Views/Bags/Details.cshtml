@@ -1,0 +1,50 @@
+@model FashionAll.Models.Bag
+
+@{
+    ViewData["Title"] = "Details";
+    var imgUrl = "/LIZ110/asp_assignment";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bag</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Image
+        </dt>
+        <dd>
+            <img style="width: 250px; height: 250px;" src="@imgUrl@Html.DisplayFor(model => model.ImgSrc)" alt="Bag Image">
+        </dd>
+        <br /><br />
+
+        <dt>
+            Bag Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BagName)
+        </dd>
+        <br />
+
+
+        <dt>
+            Description
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BagDesc)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BagID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
